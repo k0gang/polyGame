@@ -1,5 +1,5 @@
 package polyGame;
 
-public class StageBattle {
+public class StageBattle extends Stage {
 
 }
