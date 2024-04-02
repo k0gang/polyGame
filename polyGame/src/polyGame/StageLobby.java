@@ -1,7 +1,5 @@
 package polyGame;
 
-import javax.naming.ldap.InitialLdapContext;
-
 public class StageLobby extends Stage {
 
 	@Override
