@@ -16,6 +16,12 @@ public abstract class Unit {
 		this.power = power;
 	}
 	
+	void init(int maxhp, int power) {
+		this.maxhp = maxhp;
+		this.curhp = maxhp;
+		this.power = power;
+	}
+	
 	public void attack(Unit target) {
 		target.curhp -= power;
 		String message = String.format("[%s] 이 [%s] 에게 [%d]의 피해를 입힙니다.",name,target.name,power);
