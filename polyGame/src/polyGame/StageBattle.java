@@ -4,12 +4,12 @@ import java.util.Random;
 import java.util.Vector;
 
 public class StageBattle extends Stage {
-	UnitManager unitManager = new UnitManager();
-	Vector<Player> playerList = null;
-	Vector<Unit> monList = null;
-	Random ran = new Random();
-	int monDead = 0;
-	int playerDead = 0;
+	private UnitManager unitManager = new UnitManager();
+	private Vector<Player> playerList = null;
+	private Vector<Unit> monList = null;
+	private Random ran = new Random();
+	private int monDead = 0;
+	private int playerDead = 0;
 	
 	@Override
 	public void init() {
@@ -23,6 +23,15 @@ public class StageBattle extends Stage {
 		playerDead = playerList.size();
 	}
 	
+	public void print_character() {
+		System.out.println("=====[BATTLE]=====");
+		System.out.println("=====[PLAYER]=====");
+		for(int i=0; i<playerList.size(); i++)
+			playerList.get(i).printData();
+		System.out.println("=====[MONSTER]=====");
+		for(int i=0; i<monList.size(); i++)
+			monList.get(i).printData();
+	}
 	
 	
 	
