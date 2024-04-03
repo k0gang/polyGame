@@ -8,8 +8,8 @@ public class UnitOrc extends Unit implements skillUsable{
 		name = "오크";
 	}
 
-	public void skill(Vector<Player> playerList, int index) {
-		Player target = playerList.get(index);
+	public void skill(Vector<Unit> UnitList, int index) {
+		Player target = (Player) UnitList.get(index);
 		target.curhp -= power*2;
 		target.stun = true;
 		System.out.println("오크 전용 스킬 발동!");

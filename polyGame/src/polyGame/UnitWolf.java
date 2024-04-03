@@ -8,7 +8,7 @@ public class UnitWolf extends Unit implements skillUsable {
 		name = "늑대";
 	}
 
-	public void skill(Vector<Player> playerList, int index) {
+	public void skill(Vector<Unit> playerList, int index) {
 		System.out.println("늑대 전용 스킬 발동!");
 		System.out.println("적 전체에게 공격력의 절반의 물리데미지");
 
