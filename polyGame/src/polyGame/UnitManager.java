@@ -5,16 +5,25 @@ import java.util.Vector;
 
 public class UnitManager {
 
-	Vector<Player> player_list = new Vector<>();
+	private final int PLAYER = 3;
+	Vector<Unit> player_list = new Vector<>();
 	Vector<Unit> mon_list = new Vector<>();
 	String path = "polyGame.";
 	String mons[] = {"UnitWolf", "UnitBat", "UnitOrc"};
+	String heroes[] = {"Knight", "Magician", "Healer"};
 	Random ran = new Random();
 	
 	UnitManager(){
-		player_list.add(new Player("전사", 1000, 45));
-		player_list.add(new Player("법사", 800, 60));
-		player_list.add(new Player("힐러", 500, 30));
+		for(int i=0; i<PLAYER; i++) {
+			try {
+				Class<?> clazz = Class.forName(path + heroes[i]);
+				Object obj = clazz.getDeclaredConstructor().newInstance();
+				Unit temp = (Unit) obj;
+				player_list.add(temp);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	void monster_rand_set(int size) {

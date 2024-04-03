@@ -20,6 +20,5 @@ public class UnitWolf extends Unit implements skillUsable {
 				playerList.get(i).curhp = 0;
 			}
 		}
-
 	}
 }
