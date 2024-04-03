@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class StageBattle extends Stage {
 	private UnitManager unitManager = new UnitManager();
-	private Vector<Player> playerList = null;
+	private Vector<Unit> playerList = null;
 	private Vector<Unit> monList = null;
 	private Random ran = new Random();
 	private int monDead = 0;
@@ -34,9 +34,14 @@ public class StageBattle extends Stage {
 	}
 
 	public void player_attack(int index) {
-		Player p = playerList.get(index);
+		Unit p = playerList.get(index);
 		if (p.curhp <= 0)
 			return;
+		if (p.stun) {
+			System.out.println("[" + p.name + "]는 기절해 아무것도 할수없다!");
+			p.stun = false;
+			return;
+		}
 		System.out.println("=====[메뉴 선택]=====");
 		System.out.println("[" + p.name + "] [1.어택] [2.스킬]");
 		int sel = GameManager.sc.nextInt();
@@ -46,11 +51,18 @@ public class StageBattle extends Stage {
 
 				if (monList.get(idx).curhp > 0) {
 					p.attack(monList.get(idx));
+					p.silence = false;
 					break;
 				}
 			}
 		} else if (sel == 2) {
-			// 스킬
+			if (p.silence = true) {
+				System.out.println("침묵에 걸려 스킬 사용 불가");
+				player_attack(index);
+			} else {
+				int idx = ran.nextInt(monList.size());
+				((skillUsable)p).skill(monList, idx);
+			}
 		}
 	}
 
@@ -61,7 +73,9 @@ public class StageBattle extends Stage {
 		while (true) {
 			int skill = ran.nextInt(5);
 			if (skill == 0) {
-				// 스킬
+				int idx = ran.nextInt(playerList.size());
+				((skillUsable) m).skill(playerList, idx);
+				break;
 			} else {
 				int idx = ran.nextInt(playerList.size());
 				if (playerList.get(idx).curhp > 0) {
@@ -98,7 +112,7 @@ public class StageBattle extends Stage {
 				print_character();
 				if (p_index < playerList.size()) {
 					player_attack(p_index);
-
+					
 					p_index += 1;
 				} else {
 					turn = !turn;
