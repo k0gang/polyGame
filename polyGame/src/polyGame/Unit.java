@@ -5,6 +5,8 @@ public abstract class Unit {
 	int maxhp;
 	int power;
 	String name;
+	boolean stun;
+	boolean silence;
 	
 	Unit(){
 	}
